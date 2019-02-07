@@ -15,7 +15,7 @@ public class TouchHandler : MonoBehaviour
 
     public delegate void ClickAction();
     public static event ClickAction OnClicked;
-    public delegate void SwipeUpAction();
+    public delegate void SwipeUpAction(float distance);
     public static event SwipeUpAction OnSwipedUp;
 
 
@@ -43,7 +43,7 @@ public class TouchHandler : MonoBehaviour
                     if ((touch.position.y - startTouchPos.y) > 1.5)
                     {
                         if (OnSwipedUp != null)
-                            OnSwipedUp();
+                            OnSwipedUp(touch.position.y - startTouchPos.y);
                     }
                     else
                     {

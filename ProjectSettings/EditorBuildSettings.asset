@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ARcher.unity
-    guid: bd9a2f374957a450ebbec621cf55df0b
+    path: Assets/Scenes/Launcher.unity
+    guid: fb8ad888f5ea844e5bc0f6e6f5aa7b5e
+  - enabled: 1
+    path: Assets/Scenes/RocketDarts.unity
+    guid: 3571acdf724f1480e81ab78eba44f412
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 0af4861be16ca415aa1cacc61b1d1dc4
   m_configObjects: {}

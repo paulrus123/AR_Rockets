@@ -60,7 +60,7 @@ namespace GoogleARCore.Examples.Common
                 // coordinates.
                 GameObject planeObject = Instantiate(DetectedPlanePrefab, Vector3.zero, Quaternion.identity, transform);
                 planeObject.GetComponent<DetectedPlaneVisualizer>().Initialize(m_NewPlanes[i]);
-                planeObject.AddComponent<MeshCollider>();
+                //planeObject.AddComponent<MeshCollider>();
             }
         }
     }

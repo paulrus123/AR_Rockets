@@ -6,6 +6,9 @@
 [Ll]ogs/
 Assets/AssetStoreTools*
 
+Assets/ImportedAssets*
+Assets/Prefabs/Imported*
+
 # Visual Studio cache directory
 .vs/
 

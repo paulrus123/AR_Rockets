@@ -31,6 +31,8 @@ namespace GoogleARCore.Examples.Common
     {
         private static int s_PlaneCount = 0;
 
+        public bool showPlane = true;
+
         private readonly Color[] k_PlaneColors = new Color[]
         {
             new Color(1.0f, 1.0f, 1.0f),
@@ -65,6 +67,11 @@ namespace GoogleARCore.Examples.Common
 
         private MeshRenderer m_MeshRenderer;
 
+        void hidePlane(Vector3[] points)
+        {
+            //showPlane = false;
+        }
+
         /// <summary>
         /// The Unity Awake() method.
         /// </summary>
@@ -72,6 +79,11 @@ namespace GoogleARCore.Examples.Common
         {
             m_Mesh = GetComponent<MeshFilter>().mesh;
             m_MeshRenderer = GetComponent<UnityEngine.MeshRenderer>();
+        }
+
+        private void Start()
+        {
+            PlayingFieldHandler.OnPositionsDetermined += hidePlane;
         }
 
         /// <summary>
@@ -93,6 +105,11 @@ namespace GoogleARCore.Examples.Common
                  m_MeshRenderer.enabled = false;
                  return;
             }
+            else if (!showPlane)
+            {
+                m_MeshRenderer.enabled = false;
+                return;
+            }
 
             m_MeshRenderer.enabled = true;
 
@@ -108,6 +125,7 @@ namespace GoogleARCore.Examples.Common
             m_DetectedPlane = plane;
             m_MeshRenderer.material.SetColor("_GridColor", k_PlaneColors[s_PlaneCount++ % k_PlaneColors.Length]);
             m_MeshRenderer.material.SetFloat("_UvRotation", Random.Range(0.0f, 360.0f));
+            gameObject.AddComponent<MeshCollider>();
 
             Update();
         }
@@ -207,6 +225,9 @@ namespace GoogleARCore.Examples.Common
             m_Mesh.SetVertices(m_MeshVertices);
             m_Mesh.SetTriangles(m_MeshIndices, 0);
             m_Mesh.SetColors(m_MeshColors);
+            MeshCollider oldCollider = GetComponent<MeshCollider>();
+            Destroy(oldCollider);
+            gameObject.AddComponent<MeshCollider>();
         }
 
         private bool _AreVerticesListsEqual(List<Vector3> firstList, List<Vector3> secondList)
